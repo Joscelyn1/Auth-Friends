@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import { Button, Form, FormInput } from 'shards-react';
 
 class Login extends React.Component {
   state = {
@@ -16,32 +18,37 @@ class Login extends React.Component {
       }
     });
   };
+
   login = e => {
     e.preventDefault();
     axios
       .post('http://localhost:5000/api/login', this.state.credentials)
-      .then(res => console.log(res))
+      .then(res => {
+        localStorage.setItem('token', res.data.payload);
+      })
       .catch(err => console.log(err.response));
   };
 
   render() {
     return (
       <div>
-        <form onSubmit={this.login}>
-          <input
+        <Form id="my-form" onSubmit={this.login}>
+          <FormInput
+            id="my-form-item"
             type="text"
             name="username"
             value={this.state.credentials.username}
             onChange={this.handleChange}
           />
-          <input
+          <FormInput
+            id="my-form-item"
             type="password"
             name="password"
             value={this.state.credentials.password}
             onChange={this.handleChange}
           />
-          <button>Log in</button>
-        </form>
+          <Button>Login</Button>
+        </Form>
       </div>
     );
   }
