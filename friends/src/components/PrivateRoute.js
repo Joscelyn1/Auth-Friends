@@ -16,18 +16,3 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 export default PrivateRoute;
-
-// ({ component, ...rest }) is shorthand for  👇
-// const props = {
-//   component: {},
-//   exact: true,
-//   path: '/protected',
-//   render: null,
-// }
-
-// const component = props.component;
-// const rest = {
-//   exact: props.exact,
-//   path: props.path,
-//   render: props.render
-// }
