@@ -19,6 +19,14 @@ code {
   align-items: center;
 }
 
+.new-friend-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+
 .nav-link {
   margin: 5px;
 }
@@ -33,13 +41,20 @@ code {
 
   justify-content: center;
   align-items: center;
-  width: 600px;
+  width: 800px;
   height: 95vh;
 }
 
 .friend-card {
-  width: 150px;
+  width: 250px;
   margin: 10px;
   height: 200px;
   padding: 5px;
+}
+
+.my-friends {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

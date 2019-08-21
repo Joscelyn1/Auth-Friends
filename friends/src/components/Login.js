@@ -1,56 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Form, FormInput } from 'shards-react';
+import { Button } from 'shards-react';
 
-class Login extends React.Component {
-  state = {
-    credentials: {
-      username: '',
-      password: ''
-    }
+const Login = ({ history }) => {
+  const [creds, setCreds] = useState({ username: '', password: '' });
+
+  const handleChanges = event => {
+    setCreds({ ...creds, [event.target.name]: event.target.value });
   };
 
-  handleChange = e => {
-    this.setState({
-      credentials: {
-        ...this.state.credentials,
-        [e.target.name]: e.target.value
-      }
-    });
-  };
-
-  login = e => {
-    e.preventDefault();
+  const handleSubmit = event => {
+    event.preventDefault();
     axios
-      .post('http://localhost:5000/api/login', this.state.credentials)
+      .post('http://localhost:5000/api/login', creds)
       .then(res => {
+        console.log(res);
         localStorage.setItem('token', res.data.payload);
+        history.push('/friends');
       })
       .catch(err => console.log(err.response));
   };
 
-  render() {
-    return (
-      <div>
-        <form className="my-form" onSubmit={this.login}>
-          <input
-            className="my-form-input"
-            type="text"
-            name="username"
-            value={this.state.credentials.username}
-            onChange={this.handleChange}
-          />
-          <input
-            type="password"
-            name="password"
-            value={this.state.credentials.password}
-            onChange={this.handleChange}
-          />
-          <Button>Login</Button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="username"
+        placeholder="username"
+        onChange={handleChanges}
+        value={creds.username}
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="password"
+        onChange={handleChanges}
+        value={creds.password}
+      />
+      <Button type="submit">Log In</Button>
+    </form>
+  );
+};
 
 export default Login;

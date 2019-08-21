@@ -5,7 +5,6 @@ import Login from './components/Login.js';
 import PrivateRoute from './components/PrivateRoute.js';
 import FriendsList from './components/FriendsList.js';
 import { Nav, NavItem } from 'shards-react';
-
 function App() {
   return (
     <Router>
@@ -23,8 +22,7 @@ function App() {
           </NavItem>
         </Nav>
         <Route path="/login" component={Login} />
-        <PrivateRoute exact path="/protected" component={FriendsList} />
-        {/* <PrivateRoute path="/anotherRoute" component={SomeOtherComponent} /> */}
+        <PrivateRoute exact path="/friends" component={FriendsList} />
       </div>
     </Router>
   );
