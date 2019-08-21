@@ -16,7 +16,7 @@ const AddFriend = ({ submitFriend }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className="add-friend-form" onSubmit={handleSubmit}>
       <FormInput
         name="name"
         placeholder="Name"

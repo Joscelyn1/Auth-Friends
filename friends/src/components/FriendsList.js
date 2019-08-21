@@ -12,6 +12,7 @@ function FriendsList() {
       .get('http://localhost:5000/api/friends')
       .then(res => {
         setFriends(res.data);
+        console.log(res.data, 'getFriends');
       })
       .catch(err => console.log(err.response));
   };
@@ -25,7 +26,7 @@ function FriendsList() {
       .post('http://localhost:5000/api/friends', friend)
       .then(res => {
         setFriends(res.data);
-        console.log(res.data);
+        console.log(res.data, 'addFriend');
       })
       .catch(err => console.log(err.response));
   };
