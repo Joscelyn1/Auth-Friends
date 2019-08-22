@@ -35,6 +35,10 @@ code {
   width: 100px;
 }
 
+.close {
+  text-align: right;
+}
+
 .list-of-friends {
   display: flex;
   flex-wrap: wrap;
@@ -53,6 +57,13 @@ code {
 }
 
 .my-friends {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
   display: flex;
   flex-direction: column;
   justify-content: center;

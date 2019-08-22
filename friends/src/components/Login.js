@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button } from 'shards-react';
+import { Button, Form, FormInput } from 'shards-react';
 
 const Login = ({ history }) => {
   const [creds, setCreds] = useState({ username: '', password: '' });
@@ -14,7 +14,7 @@ const Login = ({ history }) => {
     axios
       .post('http://localhost:5000/api/login', creds)
       .then(res => {
-        console.log(res);
+        console.log(res, 'login');
         localStorage.setItem('token', res.data.payload);
         history.push('/friends');
       })
@@ -22,15 +22,15 @@ const Login = ({ history }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <Form className="login-form" onSubmit={handleSubmit}>
+      <FormInput
         type="text"
         name="username"
         placeholder="username"
         onChange={handleChanges}
         value={creds.username}
       />
-      <input
+      <FormInput
         type="password"
         name="password"
         placeholder="password"
@@ -38,7 +38,7 @@ const Login = ({ history }) => {
         value={creds.password}
       />
       <Button type="submit">Log In</Button>
-    </form>
+    </Form>
   );
 };
 

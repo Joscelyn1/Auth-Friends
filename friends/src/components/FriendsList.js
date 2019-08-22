@@ -31,6 +31,13 @@ function FriendsList() {
       .catch(err => console.log(err.response));
   };
 
+  const deleteFriend = id => {
+    axiosWithAuth()
+      .delete(`http://localhost:5000/api/friends/${id}`)
+      .then(res => setFriends(res.data))
+      .catch(err => console.log(err.response));
+  };
+
   return (
     <div className="my-friends">
       <h3>My Friends</h3>
@@ -42,7 +49,7 @@ function FriendsList() {
 
       <div className="list-of-friends">
         {friends.map(friend => (
-          <Friend friend={friend} key={friend.id} />
+          <Friend deleteFriend={deleteFriend} friend={friend} key={friend.id} />
         ))}
       </div>
       <div />
